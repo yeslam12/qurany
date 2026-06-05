@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تطبيق قُرآني</title>
+
+    <!-- كود أيقونة المتصفح (Favicon) -->
+    <link rel="icon" href="app_icon.png" type="image/png">
+
     <!-- خط كايرو لدعم اللغة العربية بشكل احترافي -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
         /* التنسيقات العامة والمتغيرات المنسجمة تماماً مع الهوية */
         :root {
@@ -42,7 +47,7 @@
             background-attachment: fixed;
         }
 
-        /* قسم الترحيب (Hero Section) - تدرج أزرق خطي مستقيم (Linear) من الأعلى للأسفل */
+        /* قسم الترحيب (Hero Section) - تدرج أزرق خطي مستقيم (Linear) */
         .hero {
             background-image: linear-gradient(to bottom, rgba(27, 42, 71, 0.92), rgba(45, 70, 117, 0.95)), url('islamic_pattern_1772407798327.jpg');
             background-repeat: repeat;
@@ -292,7 +297,7 @@
             transform: scale(1.05) translateY(-10px);
         }
 
-        /* قسم التحميل - تدرج أزرق خطي مستقيم (Linear) */
+        /* قسم التحميل */
         .download-section {
             background-image: linear-gradient(to bottom, rgba(45, 70, 117, 0.95), rgba(27, 42, 71, 0.95)), url('islamic_pattern_1772407798327.jpg');
             background-repeat: repeat;
@@ -360,7 +365,7 @@
             gap: 8px;
         }
 
-        /* تذييل الصفحة - تدرج أزرق خطي مستقيم للأغمق */
+        /* تذييل الصفحة */
         footer {
             background-image: linear-gradient(to bottom, rgba(27, 42, 71, 0.98), rgba(15, 25, 45, 0.99)), url('islamic_pattern_1772407798327.jpg');
             background-repeat: repeat;
@@ -627,6 +632,7 @@
     <footer>
         <p>هذا التطبيق صدقة جارية. نسأل الله أن يتقبلها وينفع بها <span class="heart">❤</span></p>
         <p style="font-weight: 600; margin-top: 10px; color: var(--light-green);">تطوير وتصميم: المهندس يسلم بابطين</p>
+        <!-- تم إضافة اسمك الإنجليزي في سطر الحقوق ليكون الموقع احترافياً وموثقاً بالكامل -->
         <p dir="ltr" style="font-size: 0.9rem; margin-top: 15px; opacity: 0.5;">&copy; 2026 Eng. Yeslam Babtain. All
             Rights Reserved.</p>
     </footer>

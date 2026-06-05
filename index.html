@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق قُرآني</title>
+    <!-- خط كايرو لدعم اللغة العربية بشكل احترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* التنسيقات العامة والمتغيرات المنسجمة تماماً مع الهوية */
+        :root {
+            --primary-color: #1b2a47;
+            /* الأزرق الداكن */
+            --secondary-color: #4a7c59;
+            /* الأخضر الإسلامي */
+            --light-green: #8cb89d;
+            /* أخضر فاتح للزخارف */
+            --bg-color: #f8f9fa;
+            /* خلفية الموقع */
+            --text-color: #333;
+        }
+
+        /* تفعيل النزول السلس في الـ CSS */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+
+            /* خلفية الجسم الأساسية (البيضاء) مع النقش الشفاف عمودياً */
+            background-image: linear-gradient(to bottom, rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9)), url('islamic_pattern_1772407798327.jpg');
+            background-repeat: repeat;
+            background-size: 300px;
+            background-attachment: fixed;
+        }
+
+        /* قسم الترحيب (Hero Section) - تدرج أزرق خطي مستقيم (Linear) من الأعلى للأسفل */
+        .hero {
+            background-image: linear-gradient(to bottom, rgba(27, 42, 71, 0.92), rgba(45, 70, 117, 0.95)), url('islamic_pattern_1772407798327.jpg');
+            background-repeat: repeat;
+            background-size: 300px;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 100px 20px 100px;
+            position: relative;
+        }
+
+        /* تنسيقات شعار التطبيق */
+        .app-icon-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .app-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 32px;
+            object-fit: cover;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fff;
+        }
+
+        .app-icon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 4px var(--light-green);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1::after {
+            content: '۞';
+            display: block;
+            font-size: 2rem;
+            color: var(--light-green);
+            margin-top: 5px;
+            text-shadow: 0 0 10px rgba(140, 184, 157, 0.4);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 750px;
+            margin: 20px auto 30px;
+            color: #e0e8f5;
+        }
+
+        /* زر استكشاف التطبيق في الأعلى */
+        .btn-discover {
+            background-color: transparent;
+            color: #fff;
+            padding: 14px 40px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            border: 2px solid var(--light-green);
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-discover:hover {
+            background-color: var(--light-green);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(140, 184, 157, 0.3);
+        }
+
+        /* قسم المميزات */
+        .features {
+            padding: 90px 20px;
+            text-align: center;
+            scroll-margin-top: 40px;
+        }
+
+        .features h2,
+        .screenshots-section h2 {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .features h2::after,
+        .screenshots-section h2::after {
+            content: '۞';
+            display: block;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin: 10px auto 0;
+            opacity: 0.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px 30px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(74, 124, 89, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            transform: translate(20%, -20%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-bottom-color: var(--secondary-color);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* قسم واجهات التطبيق */
+        .screenshots-section {
+            padding: 60px 20px 90px;
+            text-align: center;
+        }
+
+        .screen-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto 90px auto;
+            gap: 60px;
+            text-align: right;
+        }
+
+        .screen-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .screen-text {
+            flex: 1.2;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(74, 124, 89, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .screen-text h3 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .screen-text h3::before {
+            content: '✦';
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+
+        .screen-text p {
+            font-size: 1.15rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        .screen-image {
+            flex: 0.8;
+            text-align: center;
+            position: relative;
+        }
+
+        .screen-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(74, 124, 89, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: blur(20px);
+        }
+
+        .screen-image img {
+            width: 100%;
+            height: auto;
+            max-width: 290px;
+            border-radius: 35px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 8px solid var(--primary-color);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .screen-image img:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        /* قسم التحميل - تدرج أزرق خطي مستقيم (Linear) */
+        .download-section {
+            background-image: linear-gradient(to bottom, rgba(45, 70, 117, 0.95), rgba(27, 42, 71, 0.95)), url('islamic_pattern_1772407798327.jpg');
+            background-repeat: repeat;
+            background-size: 300px;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .download-section h2 {
+            font-size: 2.6rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .download-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 35px;
+            color: #e0e8f5;
+        }
+
+        .download-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-download {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(74, 124, 89, 0.5);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background-color: #3d6649;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(74, 124, 89, 0.5);
+        }
+
+        .android-only {
+            font-size: 0.95rem;
+            color: var(--light-green);
+            font-weight: 600;
+            background: rgba(140, 184, 157, 0.1);
+            padding: 6px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(140, 184, 157, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* تذييل الصفحة - تدرج أزرق خطي مستقيم للأغمق */
+        footer {
+            background-image: linear-gradient(to bottom, rgba(27, 42, 71, 0.98), rgba(15, 25, 45, 0.99)), url('islamic_pattern_1772407798327.jpg');
+            background-repeat: repeat;
+            background-size: 300px;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer::before {
+            content: '۞ ۞ ۞';
+            display: block;
+            color: var(--light-green);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+            letter-spacing: 15px;
+        }
+
+        footer p {
+            margin: 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .heart {
+            color: #ff4b4b;
+        }
+
+        /* التوافق مع الشاشات */
+        @media (max-width: 992px) {
+
+            .screen-row,
+            .screen-row:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .screen-text {
+                padding: 30px;
+                text-align: center;
+            }
+
+            .screen-text p {
+                text-align: center;
+            }
+
+            .screen-text h3 {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 60px;
+            }
+
+            .app-icon {
+                width: 110px;
+                height: 110px;
+                border-radius: 26px;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .features h2,
+            .screenshots-section h2 {
+                font-size: 2.4rem;
+                margin-bottom: 40px;
+            }
+
+            .features {
+                padding: 60px 20px;
+            }
+
+            .screenshots-section {
+                padding: 40px 20px 60px;
+            }
+
+            .screen-row {
+                margin-bottom: 60px;
+            }
+
+            .screen-text h3 {
+                font-size: 1.8rem;
+            }
+
+            .feature-card {
+                padding: 25px 20px;
+            }
+
+            .screen-image img {
+                max-width: 250px;
+                border-width: 6px;
+            }
+
+            .download-section h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .app-icon {
+                width: 95px;
+                height: 95px;
+                border-radius: 22px;
+            }
+
+            .btn-discover {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+
+            .btn-download {
+                padding: 16px 35px;
+                font-size: 1.15rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screen-text {
+                padding: 20px 15px;
+            }
+
+            .screen-text p {
+                font-size: 1.05rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- قسم الترحيب -->
+    <header class="hero">
+        <div class="app-icon-container">
+            <img src="app_icon.png" alt="شعار تطبيق قرآني" class="app-icon">
+        </div>
+
+        <h1>تطبيق قُرآني</h1>
+        <p>رفيقك اليومي لقراءة القرآن الكريم، الاستماع لتلاوة الشيخ عبدالرحمن السديس، والمحافظة على أذكارك اليومية، في
+            أي وقت وبدون الحاجة للإنترنت.</p>
+
+        <a href="#features" class="btn-discover" id="scrollBtn">استكشف التطبيق أولاً 👇</a>
+    </header>
+
+    <!-- قسم المميزات -->
+    <section class="features" id="features">
+        <h2>أبرز مميزات التطبيق</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>تلاوة تفاعلية باللمس</h3>
+                <p>استمع لأي آية تريدها فوراً بمجرد الضغط عليها، مما يسهل عليك الحفظ، المراجعة، وتعلم النطق الصحيح.</p>
+            </div>
+            <div class="feature-card">
+                <h3>التحكم بحجم الخط</h3>
+                <p>تكبير وتصغير خط الآيات والأذكار بكل سهولة لضمان تجربة قراءة مريحة تناسب نظرك وجميع الأعمار.</p>
+            </div>
+            <div class="feature-card">
+                <h3>يعمل بدون إنترنت</h3>
+                <p>تصفح السور، الأذكار، واتجاه القبلة في أي وقت ومكان دون الحاجة للاتصال بشبكة الإنترنت.</p>
+            </div>
+            <div class="feature-card">
+                <h3>صوت الشيخ السديس</h3>
+                <p>استمع لآيات الله بصوت الشيخ عبدالرحمن السديس (مع إمكانية التحميل لمرة واحدة للاستماع أوفلاين).</p>
+            </div>
+            <div class="feature-card">
+                <h3>علامات مرجعية ذكية</h3>
+                <p>حفظ تلقائي ودقيق لمكان توقفك بالتاريخ، اليوم، والدقيقة لتسهيل متابعة وردك القرآني اليومي.</p>
+            </div>
+            <div class="feature-card">
+                <h3>الوضع الليلي</h3>
+                <p>واجهة مريحة للعين تدعم الوضع الداكن بالكامل لراحة أكبر أثناء القراءة في الأوقات المتأخرة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم واجهات التطبيق -->
+    <section class="screenshots-section">
+        <h2>جولة داخل التطبيق</h2>
+
+        <div class="screen-row">
+            <div class="screen-text">
+                <h3>الرئيسية الشاملة</h3>
+                <p>واجهة رئيسية منظمة بعناية تعرض مواقيت الصلاة القادمة بدقة وتاريخ اليوم الهجري والميلادي، وتتيح لك
+                    الانتقال السريع والمباشر إلى كافة أركان التطبيق: المصحف، الأذكار، القبلة، والاستغفار.</p>
+            </div>
+            <div class="screen-image">
+                <img src="home.jpg" alt="شاشة الرئيسية">
+            </div>
+        </div>
+
+        <div class="screen-row">
+            <div class="screen-text">
+                <h3>المصحف التفاعلي</h3>
+                <p>فهرس مرن لجميع سور القرآن الكريم موضحاً نوع السورة. بداخل السورة يمكنك التحكم بحجم الخط لراحة عينيك،
+                    والاستماع المباشر لأي آية بمجرد الضغط عليها بصوت الشيخ السديس.</p>
+            </div>
+            <div class="screen-image">
+                <img src="quran.jpg" alt="شاشة المصحف">
+            </div>
+        </div>
+
+        <div class="screen-row">
+            <div class="screen-text">
+                <h3>حصن المسلم</h3>
+                <p>تبويبات مخصصة تجمع كل ما يحتاجه المسلم؛ من أذكار الصباح والمساء، أذكار النوم، وأدعية الأنبياء مدعومة
+                    بعداد رقمي ذكي لكل ذكر لتسهيل المتابعة.</p>
+            </div>
+            <div class="screen-image">
+                <img src="azkar.jpg" alt="شاشة الأذكار">
+            </div>
+        </div>
+
+        <div class="screen-row">
+            <div class="screen-text">
+                <h3>اتجاه القبلة المدمج</h3>
+                <p>بوصلة رقمية دقيقة ومصممة هندسياً لمساعدتك في تحديد اتجاه الكعبة المشرفة أينما كنت حول العالم، مع
+                    إرشادات حية لمعايرة الهاتف لضمان أعلى دقة.</p>
+            </div>
+            <div class="screen-image">
+                <img src="qibla.jpg" alt="شاشة اتجاه القبلة">
+            </div>
+        </div>
+
+        <div class="screen-row">
+            <div class="screen-text">
+                <h3>إعدادات مخصصة لك</h3>
+                <p>تحكم كامل في تجربتك؛ عدّل حجم الخط، غيّر لغة التطبيق، وفعل الوضع الليلي بلمسة واحدة. بالإضافة إلى
+                    واجهة توثق كون التطبيق صدقة جارية مخصصة للنفع العام.</p>
+            </div>
+            <div class="screen-image">
+                <img src="settings.jpg" alt="شاشة الإعدادات">
+            </div>
+        </div>
+
+    </section>
+
+    <!-- قسم التحميل -->
+    <section class="download-section">
+        <h2>ابدأ رحلتك الإيمانية الآن</h2>
+        <p>بعد أن تعرفت على مميزات التطبيق واطلعت على واجهاته، يمكنك الآن تحميله وتثبيته على جهازك بكل سهولة.</p>
+
+        <div class="download-container">
+            <a href="قُرآني.apk" class="btn-download" download>تحميل التطبيق الآن (APK)</a>
+            <div class="android-only">🤖 متاح حالياً لأجهزة الأندرويد فقط</div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>هذا التطبيق صدقة جارية. نسأل الله أن يتقبلها وينفع بها <span class="heart">❤</span></p>
+        <p style="font-weight: 600; margin-top: 10px; color: var(--light-green);">تطوير وتصميم: المهندس يسلم بابطين</p>
+        <p dir="ltr" style="font-size: 0.9rem; margin-top: 15px; opacity: 0.5;">&copy; © 2026 Eng. Yeslam Babtain. All
+            Rights Reserved.</p>
+    </footer>
+
+    <!-- سكريبت النزول السلس -->
+    <script>
+        document.getElementById('scrollBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.getElementById('features');
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    </script>
+</body>
+
+</html>
